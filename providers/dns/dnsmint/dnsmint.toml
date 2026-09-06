@@ -1,0 +1,31 @@
+Name = "DNSMint"
+Description = ''''''
+URL = "https://dnsmint.com"
+Code = "dnsmint"
+Since = "v5.5.0"
+
+Example = '''
+DNSMINT_API_KEY="dnsm_xxxxxxxxxxxx_yyyyyyyy" \
+lego run --dns dnsmint -d '*.q7k4m2.dnsmint-a3f9c1.dev' -d q7k4m2.dnsmint-a3f9c1.dev
+'''
+
+Additional = '''
+## Description
+
+DNSMint mints hostnames on domains it operates and serves from its own authoritative nameservers,
+so the DNS-01 challenge is published through the DNSMint API rather than a zone you run.
+
+The API key needs the `dns01:write` scope. It can be narrowed to one hostname or one domain when created.
+'''
+
+[Configuration]
+  [Configuration.Credentials]
+    DNSMINT_API_KEY = "API key with the dns01:write scope"
+  [Configuration.Additional]
+    DNSMINT_API_URL = "API base URL (Default: https://dnsmint.com/api)"
+    DNSMINT_POLLING_INTERVAL = "Time between DNS propagation check in seconds (Default: 2)"
+    DNSMINT_PROPAGATION_TIMEOUT = "Maximum waiting time for DNS propagation in seconds (Default: 60)"
+    DNSMINT_HTTP_TIMEOUT = "API request timeout in seconds (Default: 30)"
+
+[Links]
+  API = "https://dnsmint.com/api-reference"
